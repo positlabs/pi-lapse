@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "grunt": "~0.4.1"
+  },
+  "name": "exo-skeleton",
+  "version": "0.1.2",
+  "repository": "https://github.com/positlabs/exo-skeleton",
+  "devDependencies": {
+    "grunt-cli": "~0.1.9",
+    "bower": "~1.1.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-jade": "~0.8.0",
+    "grunt-php": "~0.2.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-targethtml": "~0.2.6",
+    "grunt-modernizr": "~0.3.0",
+    "grunt-contrib-imagemin": "~0.3.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.2",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-ftpush": "~0.3.2",
+    "grunt-open": "~0.2.2"
+  }
+}

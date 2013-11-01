@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <title>exo-skeleton</title>
+
+  <!--(if target dev)><!-->
+  <link rel="stylesheet" href="styles/master.css">
+  <script>
+    var env = "dev";
+  </script>
+  <!--<!(endif)-->
+
+  <!--(if target dist)>
+      <link rel="stylesheet" href="styles.css">
+      <script>
+        var env = "release";
+      </script>
+  <!(endif)-->
+
+</head>
+
+<body>
+
+<!-- Application container. -->
+<main role="main" id="main">
+  <div style="display:none;" class='message-holder'>
+    <h1>Error: This site requires javascript and a modern browser.</h1>
+    <ul>
+      <li><a href="http://www.google.com/chrome">Download Chrome</a> (Windows, Mac, Linux, iOS, Android)</li>
+      <li><a href="http://getfirefox.com">Download Firefox (Windows, Mac, Linux, iOS, Android)</a></li>
+      <li><a href="http://ie.microsoft.com/testdrive/Info/Downloads/Default.html">Download Internet Explorer</a>
+        (Windows)
+      </li>
+    </ul>
+  </div>
+</main>
+<!-- Application source. -->
+
+<!--(if target dev)><!-->
+<script data-main="js/master" src="js/bower/requirejs/require.js"></script>
+<!--<!(endif)-->
+
+<!--(if target dist)>
+<script src="source.js"></script>
+<!(endif)-->
+
+</body>
+</html>
