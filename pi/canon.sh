@@ -9,6 +9,6 @@ gphoto2 \
 --folder "output" \
 --capture-image-and-download \
 --set-config "/main/imgsettings/imageformat=5" \
---filename ""%Y%m%d%H%M%S.%C \
+--filename "output/"%Y%m%d%H%M%S.%C \
 --interval "5"
 # --frames "30"
