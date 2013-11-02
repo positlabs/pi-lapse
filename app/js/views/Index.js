@@ -2,35 +2,36 @@ define(function (require, exports, module) {
 
 	var Backbone = require("backbone");
 
-
-	/**
-	 *
-	 *  A view stub.
-	 *
-	 */
+	var IndexModel = Backbone.Model.extend({
+		url: "imageList.php",
+		parse:function(result){
+			return result.images;
+		}
+	});
 
 	var index = Backbone.View.extend({
 
-		// template file relative to app/templates
-		id:"index",
+		id: "index",
+		model: new IndexModel(),
 		template: "index",
-		tagName: "div",
 		className: "view",
-		events:{
-			// http://backbonejs.org/#Events-catalog
-			"click":"onClick",
-			"mouseover .some-button":"onBtnHover"
+		events: {
 		},
-
-		// built-in functions
-		initialize: function(){},
-		beforeRender: function(){},
-		render: function(){},
-		afterRender: function(){},
-
-		// event handling
-		onClick:function(){},
-		onBtnHover:function(){}
+		initialize: function () {
+			this.listenTo(this.model, "change", this.render);
+			app.index = this;
+		},
+		beforeRender: function () {
+			this.model.fetch();
+		},
+		render:function(){
+			this.el.innerHTML = JST.index(this.model.attributes)
+		},
+		afterRender: function () {
+		},
+		serialize:function(){
+			return this.model.attributes;
+		}
 
 	});
 

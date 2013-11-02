@@ -5,7 +5,7 @@ var ftp = require('./upload');
 ftp.login();
 
 watchr.watch({
-	paths:["frames/"], 
+	paths:["output/"],
 	listeners: {
         log: function(logLevel){
             // console.log('a log message occured:', arguments);

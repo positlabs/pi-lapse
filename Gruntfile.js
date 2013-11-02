@@ -240,7 +240,7 @@ module.exports = function (grunt) {
 					authKey: 'key1'
 				},
 				src: yeoman.dist,
-				dest: "subdomains/josh-dev/exo-skeleton/"
+				dest: "subdomains/josh-dev/pi-lapse/"
 				// exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp'],
 				// keep: ['/important/images/at/server/*.jpg']
 			}

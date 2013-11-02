@@ -20,7 +20,7 @@ var ftp;
 	}
 */
 
-var options = JSON.parse(fs.readFileSync('../.ftpass', 'utf8')).key1;
+var options = JSON.parse(fs.readFileSync('../.ftppass', 'utf8')).key1;
 
 function login(){
 

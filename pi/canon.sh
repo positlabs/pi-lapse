@@ -6,7 +6,7 @@ killall PTPCamera
 # gphoto2 documentation: http://linuxcommand.org/man_pages/gphoto21.html
 
 gphoto2 \
---folder "output" \
+--folder "output/" \
 --capture-image-and-download \
 --set-config "/main/imgsettings/imageformat=5" \
 --filename "output/"%Y%m%d%H%M%S.%C \
