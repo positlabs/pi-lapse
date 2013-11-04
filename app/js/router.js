@@ -22,7 +22,7 @@ define(function (require, exports, module) {
 		index: function () {
 			var indexView = new Index();
 			app.main.insertView(indexView);
-			indexView.render();
+//			indexView.render();
 		}
 
 	});

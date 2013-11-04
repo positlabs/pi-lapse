@@ -143,6 +143,9 @@ module.exports = function (grunt) {
 						src: [
 							'*.{ico,txt}',
 							'.htaccess',
+							'*.php',
+							'output/',
+							'output/thumbs',
 							yeoman.data.replace(yeoman.app, "") + "**/*",
 							yeoman.fonts.replace(yeoman.app, "") + "**/*",
 							yeoman.sounds.replace(yeoman.app, "") + "**/*",
@@ -252,7 +255,7 @@ module.exports = function (grunt) {
 				path: "http://localhost:<%= php.options.port %>"
 			},
 			dist: {
-				path: 'http://josh-dev.toolofnadrive.com/exo-skeleton'
+				path: 'http://josh-dev.toolofnadrive.com/pi-lapse'
 			}
 		}
 

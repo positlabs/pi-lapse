@@ -1,16 +1,25 @@
 define(function (require, exports, module) {
 
 	var Backbone = require("backbone");
+	var _ = require("underscore");
 
 	var IndexModel = Backbone.Model.extend({
 		url: "imageList.php",
-		parse:function(result){
-			return result.images;
+		parse: function (result) {
+//			console.log("\nparse",result);
+			var images = [];
+			for (var i = 0, maxi = result.images.length; i < maxi; i++) {
+				images.push({
+					large: result.images[i],
+					small: result.thumbs[i]
+				})
+			}
+			console.log("images", images);
+			return images;
 		}
 	});
 
 	var index = Backbone.View.extend({
-
 		id: "index",
 		model: new IndexModel(),
 		template: "index",
@@ -19,18 +28,15 @@ define(function (require, exports, module) {
 		},
 		initialize: function () {
 			this.listenTo(this.model, "change", this.render);
-			app.index = this;
+			this.checkForMore = _.bind(this.checkForMore, this);
+			setInterval(this.checkForMore, 5000);
+			this.checkForMore();
 		},
-		beforeRender: function () {
-			this.model.fetch();
-		},
-		render:function(){
-			this.el.innerHTML = JST.index(this.model.attributes)
-		},
-		afterRender: function () {
-		},
-		serialize:function(){
+		serialize: function () {
 			return this.model.attributes;
+		},
+		checkForMore: function () {
+			this.model.fetch();
 		}
 
 	});
