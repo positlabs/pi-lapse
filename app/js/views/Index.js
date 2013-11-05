@@ -4,6 +4,8 @@ define(function (require, exports, module) {
 	var _ = require("underscore");
 	var $ = require("jquery");
 
+	var LightBox = require("views/lightbox");
+
 	var IndexModel = Backbone.Model.extend({
 		url: "imageList.php",
 		parse: function (result) {
@@ -20,6 +22,7 @@ define(function (require, exports, module) {
 
 				images.unshift({
 					large: result.images[i],
+					medium: result.medium[i],
 					small: result.thumbs[i],
 					date: {
 						yyyy: yyyy,
@@ -42,15 +45,17 @@ define(function (require, exports, module) {
 		template: "index",
 		className: "view",
 		events: {
+			"click .thumbnail": "clickThumb"
 		},
 		initialize: function () {
 			this.listenTo(this.model, "change", this.render);
+//			this.clickThumb = _.bind(this.clickThumb, this);
 			this.checkForMore = _.bind(this.checkForMore, this);
 			setInterval(this.checkForMore, 5000);
 			this.checkForMore();
 		},
 		afterRender: function () {
-			$(".thumbnail").on("click", this.clickThumb);
+//			$(".thumbnail").on("click", this.clickThumb);
 		},
 		serialize: function () {
 			return this.model.attributes;
@@ -59,7 +64,11 @@ define(function (require, exports, module) {
 			this.model.fetch();
 		},
 		clickThumb: function () {
-			this.getAttribute('data-href');
+			var lb = new LightBox({
+				model: this.model
+			});
+			this.insertView(lb);
+			lb.render();
 		}
 
 	});

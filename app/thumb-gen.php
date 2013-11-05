@@ -1,6 +1,7 @@
 <?php
 
-$outputFolder = 'output/thumbs/';
+$thumbsFolder = 'output/thumbs/';
+$mediumFolder = 'output/medium/';
 $originalsFolder = 'output/';
 
 $originals = glob("output/*.jpg");
@@ -9,17 +10,15 @@ $thumbs = glob("output/thumbs/*.jpg");
 // only process the images that are missing
 $diff = array_diff($originals, $thumbs);
 foreach ($diff as $file) {
-  processImage($file);
+  processImage($file, $thumbsFolder, 150);
+  processImage($file, $mediumFolder, 600);
 }
 
-function processImage($imagePath){
-
-  $outputFolder = 'output/thumbs/';
+function processImage($imagePath, $outputFolder, $targetWidth){
 
   $imageSize = getimagesize($imagePath);
   $originalWidth = $imageSize[0];
   $originalHeight = $imageSize[1];
-  $targetWidth = 150;
   $targetHeight = round($originalHeight * $targetWidth / $originalWidth);
 
   $urlElements = explode("/", $imagePath);
