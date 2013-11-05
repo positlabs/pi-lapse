@@ -19,7 +19,7 @@ function processImage($imagePath){
   $imageSize = getimagesize($imagePath);
   $originalWidth = $imageSize[0];
   $originalHeight = $imageSize[1];
-  $targetWidth = 100;
+  $targetWidth = 150;
   $targetHeight = round($originalHeight * $targetWidth / $originalWidth);
 
   $urlElements = explode("/", $imagePath);
