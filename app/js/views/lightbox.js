@@ -17,12 +17,12 @@ define(function (require, exports, module) {
 		},
 		onClickLeft: function (e) {
 			e.stopPropagation();
-			this.cursor == 0 ? this.cursor = this.model.values().length-1 : this.cursor--;
+			this.cursor == this.model.values().length - 1 ? this.cursor = 0: this.cursor++;
 			this.render();
 		},
 		onClickRight: function (e) {
 			e.stopPropagation();
-			this.cursor == this.model.values().length - 1 ? this.cursor = 0: this.cursor++;
+			this.cursor == 0 ? this.cursor = this.model.values().length-1 : this.cursor--;
 			this.render();
 		},
 		onClick:function(){

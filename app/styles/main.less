@@ -47,7 +47,18 @@ body {
         height: 100%;
         width: 10%;
         position: absolute;
+        &:hover{
+            background: rgba(0, 255, 255, .2);
+        }
         background: rgba(0, 255, 255, .1);
+        color: cyan;
+        cursor:pointer;
+        span{
+            .user-select(none);
+            position: absolute;
+            top: 50%;
+            width: 100%;
+        }
     }
     .left {
         left: 0;

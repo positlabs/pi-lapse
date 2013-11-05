@@ -28,7 +28,7 @@ buf.push("<div class=\"thumbnail\"><img" + (jade.attrs({ 'src':(image.small), 'd
 
 this["JST"]["lightbox"] = function anonymous(locals) {
 var buf = [];
-buf.push("<div class=\"left\"></div><div class=\"right\"></div><img" + (jade.attrs({ 'src':(locals.medium) }, {"src":true})) + "/><span>" + (jade.escape(null == (jade.interp = locals.date.dd + " | ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.hour + " : ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.minute + " : ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.second) ? "" : jade.interp)) + "</span>");;return buf.join("");
+buf.push("<div class=\"left\"><span><<</span></div><div class=\"right\"><span>>></span></div><img" + (jade.attrs({ 'src':(locals.medium) }, {"src":true})) + "/><span>" + (jade.escape(null == (jade.interp = locals.date.dd + " | ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.hour + " : ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.minute + " : ") ? "" : jade.interp)) + (jade.escape(null == (jade.interp = locals.date.second) ? "" : jade.interp)) + "</span>");;return buf.join("");
 };
 
 this["JST"]["main"] = function anonymous(locals) {
