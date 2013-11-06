@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require('path');
 var JSFtp = require("jsftp"); // https://npmjs.org/package/jsftp
 var http = require("http");
+var $ = require("jquery");
 
 var toUpload = [];
 var uploading = false;
@@ -39,9 +40,7 @@ function login() {
 }
 
 function upload(filepath) {
-	console.log("pushing file into upload queue", filepath);
-
-
+	console.log("\npushing file into upload queue", filepath);
 	// we can only upload one file at a time, so push them into a queue
 	toUpload.push(filepath);
 	console.log("\tfiles in queue:", toUpload.length);
@@ -64,7 +63,8 @@ function doUpload() {
 		ftp.put(filepath, remotePath, function (hadError) {
 			uploading = false;
 			if (!hadError) {
-				console.log("File transferred successfully!");
+				console.log(filepath, "transferred successfully!");
+				hitThumbGenerator(filepath)
 			} else {
 				console.log("error:", hadError);
 				toUpload.push(filepath);
@@ -73,15 +73,15 @@ function doUpload() {
 	}
 }
 
-process.on('uncaughtException', function (error) {
-	console.log(error);
-	console.log("hmph");
-});
+function hitThumbGenerator(filepath){
+	var url = path.join(options.remoteHttp, "imageList.php") + "?p=" + filepath;
+	$.get(url, function(e){
+		console.log("e",e);
+	});
+}
 
 exports.upload = upload;
 exports.options = options;
 exports.ftp = ftp;
 exports.login = login;
 
-// var upload = require('./upload');
-// upload.upload("frames/capt0000.jpg");

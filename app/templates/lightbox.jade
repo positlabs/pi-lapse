@@ -3,10 +3,11 @@ div(class='left')
 div(class='right')
     span:>>
 
-img(src=locals.medium)
+img(src=locals.image.medium)
 
 span
-    =locals.date.dd + " | "
-    =locals.date.hour + " : "
-    =locals.date.minute + " : "
-    =locals.date.second
+    =locals.image.date.mm + " - "
+    =locals.image.date.dd + " | "
+    =locals.image.date.hour + " : "
+    =locals.image.date.minute + " : "
+    =locals.image.date.second

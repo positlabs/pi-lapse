@@ -33,6 +33,7 @@ define(function (require, exports, module) {
 	});
 
 	app.initialize = function () {
+		console.log("app."+"initialize()", arguments);
 		app.onResize();
 
 		app.router = new Router();

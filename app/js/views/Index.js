@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 	var IndexModel = Backbone.Model.extend({
 		url: "imageList.php",
 		parse: function (result) {
-//			console.log("\nparse",result);
+			console.log("\nparse", result);
 			var images = [];
 			for (var i = 0, maxi = result.images.length; i < maxi; i++) {
 				var date = result.images[i].split("/").pop().split(".")[0];
@@ -34,6 +34,11 @@ define(function (require, exports, module) {
 					}
 				});
 			}
+
+			for (var i = 0, maxi = images.length; i < maxi; i++) {
+				images[i].index = i;
+			}
+
 			console.log("images", images);
 			return images;
 		}
@@ -48,14 +53,13 @@ define(function (require, exports, module) {
 			"click .thumbnail": "clickThumb"
 		},
 		initialize: function () {
+			console.log("index." + "initialize()", arguments);
 			this.listenTo(this.model, "change", this.render);
-//			this.clickThumb = _.bind(this.clickThumb, this);
 			this.checkForMore = _.bind(this.checkForMore, this);
-			setInterval(this.checkForMore, 5000);
+			setInterval(this.checkForMore, 10000);
 			this.checkForMore();
 		},
 		afterRender: function () {
-//			$(".thumbnail").on("click", this.clickThumb);
 		},
 		serialize: function () {
 			return this.model.attributes;
@@ -63,10 +67,12 @@ define(function (require, exports, module) {
 		checkForMore: function () {
 			this.model.fetch();
 		},
-		clickThumb: function () {
-			var lb = new LightBox({
-				model: this.model
-			});
+		clickThumb: function (e) {
+
+			// TODO - trigger this with a routing event
+			var lb = new LightBox();
+			lb.model.set("album", this.model);
+			lb.model.set("cursor", e.currentTarget.getAttribute("data-index"));
 			this.insertView(lb);
 			lb.render();
 		}

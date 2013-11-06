@@ -1,8 +1,7 @@
 each image in locals
-    div(class='thumbnail')
+    div(class='thumbnail', data-index=image.index)
         img(src=image.small, data-href=image.large)
         span
-            =image.date.dd + " | "
             =image.date.hour + " : "
             =image.date.minute + " : "
             =image.date.second

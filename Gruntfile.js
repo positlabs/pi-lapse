@@ -144,8 +144,7 @@ module.exports = function (grunt) {
 							'*.{ico,txt}',
 							'.htaccess',
 							'*.php',
-							'output/',
-							'output/thumbs',
+							'output/*',
 							yeoman.data.replace(yeoman.app, "") + "**/*",
 							yeoman.fonts.replace(yeoman.app, "") + "**/*",
 							yeoman.sounds.replace(yeoman.app, "") + "**/*",
@@ -242,10 +241,12 @@ module.exports = function (grunt) {
 					port: 21,
 					authKey: 'key1'
 				},
+//				src: yeoman.app,
 				src: yeoman.dist,
-				dest: "subdomains/josh-dev/pi-lapse/"
+				dest: "subdomains/josh-dev/pi-lapse/",
 				// exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp'],
 				// keep: ['/important/images/at/server/*.jpg']
+				keep: ['*.jpg']
 			}
 		},
 

@@ -21,6 +21,8 @@ define(["require_config"], function () {
 		Backbone.Layout.configure({
 			manage: true,
 			fetchTemplate: function (path) {
+
+				console.log("path",path);
 				return JST[path];
 			}
 		});

@@ -5,13 +5,16 @@ $mediumFolder = 'output/medium/';
 $originalsFolder = 'output/';
 
 $originals = glob("output/*.jpg");
-$thumbs = glob("output/thumbs/*.jpg");
 
-// only process the images that are missing
-$diff = array_diff($originals, $thumbs);
-foreach ($diff as $file) {
+foreach ($originals as $file) {
   processImage($file, $thumbsFolder, 150);
   processImage($file, $mediumFolder, 600);
+
+  $urlElements = explode("/", $file);
+  $fileName = array_pop($urlElements);
+  echo "asdf".$fileName;
+  $newName = "output/original/".($fileName);
+  rename($file, $newName);
 }
 
 function processImage($imagePath, $outputFolder, $targetWidth){
@@ -37,5 +40,8 @@ function processImage($imagePath, $outputFolder, $targetWidth){
           imagejpeg($sm, $newFilePath, 75);
   }
 }
+
+//	echo '{"success":true}';
+
 
 ?>

@@ -11,8 +11,10 @@ define(function (require, exports, module) {
 		el: "#main",
 		template: 'main',
 		initialize: function () {
+			console.log("View."+"initialize()", arguments);
 		},
 		afterRender: function () {
+			console.log("View."+"afterRender()", arguments);
 		},
 		serialize: function () {
 			return _.extend({}, app.copy);
