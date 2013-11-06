@@ -2,7 +2,6 @@ var fs = require("fs");
 var path = require('path');
 var JSFtp = require("jsftp"); // https://npmjs.org/package/jsftp
 var http = require("http");
-var $ = require("jquery");
 
 var toUpload = [];
 var uploading = false;
