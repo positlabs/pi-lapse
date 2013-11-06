@@ -40,6 +40,7 @@ define(function (require, exports, module) {
 			this.render();
 		},
 		onClick: function () {
+			this.model.off("change:cursor");
 			this.remove();
 		},
 		serialize: function () {

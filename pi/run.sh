@@ -1,4 +1,4 @@
-# kill previous node instances
+cclear# kill previous node instances
 killall node
 
 # start watching for new files

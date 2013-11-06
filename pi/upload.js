@@ -63,20 +63,12 @@ function doUpload() {
 			uploading = false;
 			if (!hadError) {
 				console.log(filepath, "transferred successfully!");
-				hitThumbGenerator(filepath)
 			} else {
 				console.log("error:", hadError);
 				toUpload.push(filepath);
 			}
 		});
 	}
-}
-
-function hitThumbGenerator(filepath){
-	var url = path.join(options.remoteHttp, "imageList.php") + "?p=" + filepath;
-	$.get(url, function(e){
-		console.log("e",e);
-	});
 }
 
 exports.upload = upload;
