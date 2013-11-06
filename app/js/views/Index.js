@@ -7,18 +7,20 @@ define(function (require, exports, module) {
 	var LightBox = require("views/lightbox");
 
 	var IndexModel = Backbone.Model.extend({
+//		url: "http://josh-dev.toolofnadrive.com/pi-lapse/imageList.php",
 		url: "imageList.php",
 		parse: function (result) {
 			console.log("\nparse", result);
 			var images = [];
 			for (var i = 0, maxi = result.images.length; i < maxi; i++) {
 				var date = result.images[i].split("/").pop().split(".")[0];
-				var yyyy = date.slice(0, 4);
-				var mm = date.slice(4, 6);
-				var dd = date.slice(6, 8);
-				var hour = date.slice(8, 10);
-				var minute = date.slice(10, 12);
-				var second = date.slice(12, 14);
+				var endIndex = date.length;
+				var yyyy = date.slice(endIndex-14, endIndex-10);
+				var mm = date.slice(endIndex-10, endIndex-8);
+				var dd = date.slice(endIndex-8, endIndex-6);
+				var hour = date.slice(endIndex-6, endIndex-4);
+				var minute = date.slice(endIndex-4, endIndex-2);
+				var second = date.slice(endIndex-2, endIndex);
 
 				images.unshift({
 					large: result.images[i],
@@ -39,6 +41,8 @@ define(function (require, exports, module) {
 				images[i].index = i;
 			}
 
+			setTimeout(this.checkForMore, 15000);
+
 			console.log("images", images);
 			return images;
 		}
@@ -56,7 +60,6 @@ define(function (require, exports, module) {
 			console.log("index." + "initialize()", arguments);
 			this.listenTo(this.model, "change", this.render);
 			this.checkForMore = _.bind(this.checkForMore, this);
-			setInterval(this.checkForMore, 10000);
 			this.checkForMore();
 		},
 		afterRender: function () {

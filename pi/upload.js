@@ -3,6 +3,9 @@ var path = require('path');
 var JSFtp = require("jsftp"); // https://npmjs.org/package/jsftp
 var http = require("http");
 
+var gmagic = require('gm');
+var gm = gmagic.subClass({imageMagick: true});
+
 var toUpload = [];
 var uploading = false;
 var loggedIn = false;
@@ -33,15 +36,21 @@ function login() {
 		} else {
 			loggedIn = true;
 			startUploading();
-			console.log("loggged in!")
+			console.log("loggged in!");
 		}
 	});
 }
 
 function upload(filepath) {
 	console.log("\npushing file into upload queue", filepath);
-	// we can only upload one file at a time, so push them into a queue
-	toUpload.push(filepath);
+
+	// need to resize image before uploading
+	gm(filepath).resize(1080).write(filepath, function (e) {
+		console.log(e)
+		// we can only upload one file at a time, so push them into a queue
+		toUpload.push(filepath);
+	});
+
 	console.log("\tfiles in queue:", toUpload.length);
 }
 

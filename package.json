@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "grunt": "~0.4.1",
-    "jquery": "~1.8.3"
+    "jquery": "~1.8.3",
+    "gm": "~1.13.3"
   },
   "name": "exo-skeleton",
   "version": "0.1.2",

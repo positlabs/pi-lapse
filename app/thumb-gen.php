@@ -6,13 +6,15 @@ $originalsFolder = 'output/';
 
 $originals = glob("output/*.jpg");
 
-foreach ($originals as $file) {
+// only process up to 6 images at a time
+$subset = array_slice($originals, 0, 6);
+
+foreach ($subset as $file) {
   processImage($file, $thumbsFolder, 150);
   processImage($file, $mediumFolder, 600);
 
   $urlElements = explode("/", $file);
   $fileName = array_pop($urlElements);
-  echo "asdf".$fileName;
   $newName = "output/original/".($fileName);
   rename($file, $newName);
 }
@@ -30,15 +32,11 @@ function processImage($imagePath, $outputFolder, $targetWidth){
   $ext = array_pop($fileName);
   $newFilePath = $outputFolder.join($fileName, "").".".$ext;
 
-  if(file_exists($newFilePath)) {
-
-  } else {
-          $im = imagecreatefromjpeg($imagePath);
-          $sm = imagecreatetruecolor($targetWidth, $targetHeight);
-          imagealphablending($sm, false);
-          imagecopyresampled($sm, $im, 0, 0, 0, 0, $targetWidth, $targetHeight, $originalWidth, $originalHeight);
-          imagejpeg($sm, $newFilePath, 75);
-  }
+  $im = imagecreatefromjpeg($imagePath);
+  $sm = imagecreatetruecolor($targetWidth, $targetHeight);
+  imagealphablending($sm, false);
+  imagecopyresampled($sm, $im, 0, 0, 0, 0, $targetWidth, $targetHeight, $originalWidth, $originalHeight);
+  imagejpeg($sm, $newFilePath, 75);
 }
 
 //	echo '{"success":true}';
