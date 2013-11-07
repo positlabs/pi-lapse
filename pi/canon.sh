@@ -10,5 +10,5 @@ gphoto2 \
 --capture-image-and-download \
 --set-config "/main/imgsettings/imageformat=5" \
 --filename "output/"%Y%m%d%H%M%S.%C \
---interval "5"
-# --frames "30"
+--interval "3"
+--frames "2400"
