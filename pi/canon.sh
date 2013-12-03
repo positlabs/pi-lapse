@@ -1,7 +1,7 @@
-echo "attempting to kill all PTPCamera processes..."
+# echo "attempting to kill all PTPCamera processes..."
 
 # releases camera from the OS so we can use it
-killall PTPCamera
+# killall PTPCamera
 
 # gphoto2 documentation: http://linuxcommand.org/man_pages/gphoto21.html
 
@@ -10,5 +10,4 @@ gphoto2 \
 --capture-image-and-download \
 --set-config "/main/imgsettings/imageformat=5" \
 --filename "output/"%Y%m%d%H%M%S.%C \
---interval "3"
---frames "2400"
+--interval "6"
